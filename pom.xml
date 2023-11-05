@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.1.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>one.trmk.ignite</groupId>
+	<artifactId>ignite-demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Ignite Demo</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+		<ignite.version>2.15.0</ignite.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>com.h2database</groupId>
+					<artifactId>h2</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-core</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-spring</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-slf4j</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.ignite</groupId>
+			<artifactId>ignite-calcite</artifactId>
+			<version>${ignite.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<argLine>
+						--add-opens=jdk.management/com.sun.management.internal=ALL-UNNAMED
+						--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED
+						--add-opens=java.base/sun.nio.ch=ALL-UNNAMED
+						--add-opens=java.management/com.sun.jmx.mbeanserver=ALL-UNNAMED
+						--add-opens=jdk.internal.jvmstat/sun.jvmstat.monitor=ALL-UNNAMED
+						--add-opens=java.base/sun.reflect.generics.reflectiveObjects=ALL-UNNAMED
+						--add-opens=java.base/java.io=ALL-UNNAMED
+						--add-opens=java.base/java.nio=ALL-UNNAMED
+						--add-opens=java.base/java.util=ALL-UNNAMED
+						--add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+						--add-opens=java.base/java.util.concurrent.locks=ALL-UNNAMED
+						--add-opens=java.base/java.lang=ALL-UNNAMED
+					</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
